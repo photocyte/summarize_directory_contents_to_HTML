@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[97]:
-
-
 import os
 import pathlib ##See https://stackoverflow.com/questions/237079/how-to-get-file-creation-modification-date-times-in-python
 import datetime
@@ -20,6 +17,7 @@ parser = argparse.ArgumentParser(description='This program makes an HTML table s
 parser.add_argument("DIRECTORY_PATH",help="The path to the directory to summarize")
 parser.add_argument("--filter",default=False,action='store_true',help="Filter the results to just .mzML and .d files")
 parser.add_argument("--hash",default=False,action='store_true',help="Calculate the md5sum for files, and the combined recursive md5sum for directories")
+parser.add_argument("--in_dir",default=False,action='store_true',help="Output the resulting HTML file into the directory being summarized (needs write access)")
 args = parser.parse_args()
 parser.parse_args()
 
@@ -71,7 +69,7 @@ def recursive_directory_analyze(start_path = '.',max_count=100000,doHashes=True)
 
 df = pandas.DataFrame(columns = ['Path', 'Type', 'Size', '# entries', 'md5sum',"last modified time",'create time'])
 
-folder = '/Volumes/moorelab/MS_data/QToF/M_drive_2020/Tim_Fallon/20201109_C18_UTEX_3200_mz_range'
+folder = args.DIRECTORY_PATH
 filepaths = [os.path.join(folder, f) for f in os.listdir(folder)]
 for f in filepaths:
     fpathlib_obj = pathlib.Path(f)
@@ -142,8 +140,6 @@ try:
 finally:
     pass
 
-
-# In[ ]:
 
 
 
