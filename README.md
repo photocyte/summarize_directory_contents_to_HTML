@@ -1,7 +1,7 @@
 # summarize_directory_contents_to_HTML
 A python program with outputs &amp; opens an HTML table summarizing the files in a directory
 
-'''
+```
 usage: sum_dir_to_HTML.py [-h] [--filter] [--hash] [--in_dir] DIRECTORY_PATH
 
 This program makes an HTML table summary of a given directory, and opens it in
@@ -17,4 +17,4 @@ optional arguments:
                   md5sum for directories
   --in_dir        Output the resulting HTML file into the directory being
                   summarized (needs write access)
-'''
+```
