@@ -23,7 +23,7 @@ parser.parse_args()
 
 doHashSwitch = args.hash
 nameFilterSwitch = args.filter
-filterList = [".d"]
+filterList = [".d",".mzML"]
 
 def md5_file(fname):
     hash_md5 = hashlib.md5()
@@ -77,7 +77,7 @@ for f in filepaths:
     if nameFilterSwitch:
         includeFile = False
         for key in filterList:
-            if key in fpathlib_obj.name:
+            if key.lower() in fpathlib_obj.name.lower():
                 includeFile = True
         if includeFile == False:
             continue
