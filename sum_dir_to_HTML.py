@@ -65,6 +65,12 @@ def recursive_directory_analyze(start_path = '.',max_count=100000,doHashes=True)
         overall_hash = "not determined"
     return total_size,count,overall_hash
 
+print("Target directory is:",args.DIRECTORY_PATH)
+print("Content hashing is set to:",doHashSwitch)
+print("Filename filtering is set to:",nameFilterSwitch)
+if nameFilterSwitch:
+    print("Filter criteria is:",filterList)
+
 ##From https://stackoverflow.com/questions/38181554/md5sum-shell-script-and-python-hashlib-md5-is-different/38181627
 
 df = pandas.DataFrame(columns = ['Path', 'Type', 'Size', '# entries', 'md5sum',"last modified time",'create time'])
@@ -80,8 +86,9 @@ for f in filepaths:
             if key.lower() in fpathlib_obj.name.lower():
                 includeFile = True
         if includeFile == False:
+            print("Skipping:",fpathlib_obj.name,"based on filter.")    
             continue
-    
+    print("Working on:",fpathlib_obj.name,"...")    
     artifact_type = 'unknown'
     
     mtime = datetime.datetime.fromtimestamp(fpathlib_obj.stat().st_mtime)
